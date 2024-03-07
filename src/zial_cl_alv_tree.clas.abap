@@ -3,7 +3,7 @@ CLASS zial_cl_alv_tree DEFINITION
   PUBLIC
   INHERITING FROM cl_gui_alv_tree
   CREATE PUBLIC
-  GLOBAL FRIENDS zial_cl_alv_tree_event_handler.
+  GLOBAL FRIENDS zial_cl_alv_tree_evt_handler.
 
   PUBLIC SECTION.
     METHODS constructor
@@ -12,7 +12,7 @@ CLASS zial_cl_alv_tree DEFINITION
                 iv_node_sel_mode   TYPE i         DEFAULT cl_gui_simple_tree=>node_sel_mode_single
                 iv_no_html_header  TYPE abap_bool DEFAULT abap_true
                 iv_single_item_sel TYPE abap_bool DEFAULT abap_false
-                io_event_handler   TYPE REF TO zial_cl_alv_tree_event_handler
+                io_event_handler   TYPE REF TO zial_cl_alv_tree_evt_handler
       RAISING   zcx_alv_grid_not_createable.
 
     METHODS set_drag_and_drop
@@ -35,7 +35,7 @@ CLASS zial_cl_alv_tree DEFINITION
     DATA ms_variant        TYPE disvariant.
     DATA mo_toolbar        TYPE REF TO cl_gui_toolbar.
     DATA mt_toolbar_excl   TYPE ui_functions.
-    DATA mo_event_handler  TYPE REF TO zial_cl_alv_tree_event_handler.
+    DATA mo_event_handler  TYPE REF TO zial_cl_alv_tree_evt_handler.
     DATA mo_dragdrop       TYPE REF TO cl_dragdrop.
 
     METHODS alv_build_fcat
@@ -87,8 +87,8 @@ CLASS zial_cl_alv_tree IMPLEMENTATION.
 
     IF sy-subrc NE 0.
       RAISE EXCEPTION TYPE zcx_alv_grid_not_createable
-        MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-        WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     ENDIF.
 
     mo_container     = io_container.
@@ -111,14 +111,14 @@ CLASS zial_cl_alv_tree IMPLEMENTATION.
 
     CASE iv_enable.
       WHEN abap_true.
-        mo_dragdrop->add( EXPORTING  flavor     = zial_cl_alv_tree_event_handler=>mc_dragdrop_flavor
+        mo_dragdrop->add( EXPORTING  flavor     = zial_cl_alv_tree_evt_handler=>mc_dragdrop_flavor
                                      dragsrc    = abap_true
                                      droptarget = abap_true
                                      effect     = cl_dragdrop=>move
                           EXCEPTIONS OTHERS     = 0 ).
 
       WHEN abap_false.
-        mo_dragdrop->remove( EXPORTING  flavor = zial_cl_alv_tree_event_handler=>mc_dragdrop_flavor
+        mo_dragdrop->remove( EXPORTING  flavor = zial_cl_alv_tree_evt_handler=>mc_dragdrop_flavor
                              EXCEPTIONS OTHERS = 0 ).
 
     ENDCASE.

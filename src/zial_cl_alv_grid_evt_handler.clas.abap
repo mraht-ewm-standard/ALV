@@ -1,5 +1,5 @@
 "! <p class="shorttext synchronized">ALV: Grid Event Handler</p>
-CLASS zial_cl_alv_grid_event_handler DEFINITION
+CLASS zial_cl_alv_grid_evt_handler DEFINITION
   PUBLIC ABSTRACT
   CREATE PUBLIC.
 
@@ -99,7 +99,7 @@ CLASS zial_cl_alv_grid_event_handler DEFINITION
 ENDCLASS.
 
 
-CLASS zial_cl_alv_grid_event_handler IMPLEMENTATION.
+CLASS zial_cl_alv_grid_evt_handler IMPLEMENTATION.
 
   METHOD get_alv_grid.
 

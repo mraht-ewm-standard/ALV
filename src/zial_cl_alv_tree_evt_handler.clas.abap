@@ -1,5 +1,5 @@
 "! <p class="shorttext synchronized">ALV: Tree Event Handler</p>
-CLASS zial_cl_alv_tree_event_handler DEFINITION
+CLASS zial_cl_alv_tree_evt_handler DEFINITION
   PUBLIC
   CREATE PUBLIC.
 
@@ -83,7 +83,7 @@ CLASS zial_cl_alv_tree_event_handler DEFINITION
 ENDCLASS.
 
 
-CLASS zial_cl_alv_tree_event_handler IMPLEMENTATION.
+CLASS zial_cl_alv_tree_evt_handler IMPLEMENTATION.
 
   METHOD get_alv_tree.
 

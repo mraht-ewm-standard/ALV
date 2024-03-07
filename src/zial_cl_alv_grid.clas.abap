@@ -3,7 +3,7 @@ CLASS zial_cl_alv_grid DEFINITION
   PUBLIC
   INHERITING FROM cl_gui_alv_grid
   CREATE PUBLIC
-  GLOBAL FRIENDS zial_cl_alv_grid_event_handler.
+  GLOBAL FRIENDS zial_cl_alv_grid_evt_handler.
 
   PUBLIC SECTION.
     CONSTANTS: BEGIN OF mc_sel_mode,
@@ -50,7 +50,7 @@ CLASS zial_cl_alv_grid DEFINITION
     METHODS constructor
       IMPORTING io_container     TYPE REF TO cl_gui_container
                 iv_appl_events   TYPE abap_bool DEFAULT abap_false
-                io_event_handler TYPE REF TO zial_cl_alv_grid_event_handler
+                io_event_handler TYPE REF TO zial_cl_alv_grid_evt_handler
       RAISING   zcx_alv_grid_not_createable.
 
     METHODS det_selected_rows
@@ -106,7 +106,7 @@ CLASS zial_cl_alv_grid DEFINITION
     DATA mt_filter           TYPE lvc_t_filt.
     DATA mt_fieldcatalog     TYPE lvc_t_fcat.
     DATA mt_toolbar_excl     TYPE ui_functions.
-    DATA mo_event_handler    TYPE REF TO zial_cl_alv_grid_event_handler.
+    DATA mo_event_handler    TYPE REF TO zial_cl_alv_grid_evt_handler.
     DATA mv_appl_events      TYPE abap_bool.
     DATA mv_ok_code_on_enter TYPE syucomm VALUE mc_okcode-enter.
 
@@ -161,8 +161,8 @@ CLASS zial_cl_alv_grid IMPLEMENTATION.
 
     IF sy-subrc NE 0.
       RAISE EXCEPTION TYPE zcx_alv_grid_not_createable
-        MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-        WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     ENDIF.
 
     mo_container     = io_container.
@@ -443,8 +443,8 @@ CLASS zial_cl_alv_grid IMPLEMENTATION.
 
     IF sy-subrc NE 0.
       RAISE EXCEPTION TYPE zcx_alv_grid_not_createable
-        MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-        WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     ENDIF.
 
   ENDMETHOD.
