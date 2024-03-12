@@ -21,12 +21,11 @@ CLASS zial_apack_alv IMPLEMENTATION.
     if_apack_manifest~descriptor-git_url      = 'https://github.com/mraht-ewm-standard/ALV.git' ##NO_TEXT.
 
     if_apack_manifest~descriptor-dependencies = VALUE #(
-        ( group_id       = 'c-a-s.de'
-          artifact_id    = 'ewm-dev-basis'
+        group_id = 'c-a-s.de'
+        ( artifact_id    = 'ewm-dev-basis'
           target_package = 'ZIAL_DEV_BASIS'
           git_url        = 'https://github.com/mraht-ewm-standard/DEV_BASIS.git' )
-        ( group_id       = 'c-a-s.de'
-          artifact_id    = 'ewm-exc-mgmt'
+        ( artifact_id    = 'ewm-exc-mgmt'
           target_package = 'ZIAL_EXC_MGMT'
           git_url        = 'https://github.com/mraht-ewm-standard/EXC_MGMT.git' ) ) ##NO_TEXT.
 
