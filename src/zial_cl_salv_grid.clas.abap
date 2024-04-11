@@ -38,8 +38,7 @@ CLASS zial_cl_salv_grid DEFINITION
 
     METHODS register_events.
 
-    METHODS set_title
-      IMPORTING iv_title TYPE lvc_title OPTIONAL.
+    METHODS set_title.
 
     METHODS set_functions.
 
@@ -116,12 +115,7 @@ CLASS zial_cl_salv_grid IMPLEMENTATION.
 
   METHOD set_title.
 
-    CHECK iv_title IS SUPPLIED
-      AND iv_title NE mv_grid_title.
-
-    mo_salv_table->get_display_settings( )->set_list_header( iv_title ).
-
-    mv_grid_title = iv_title.
+    mo_salv_table->get_display_settings( )->set_list_header( mv_grid_title ).
 
   ENDMETHOD.
 
