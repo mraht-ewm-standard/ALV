@@ -94,7 +94,7 @@ CLASS zial_cl_alv_grid DEFINITION
       RETURNING VALUE(rt_fieldcatalog) TYPE lvc_t_fcat.
 
     METHODS set_current_cell_via_id REDEFINITION.
-    METHODS enable_cell_style.
+
     METHODS enable_row_style.
 
   PROTECTED SECTION.
@@ -235,26 +235,6 @@ CLASS zial_cl_alv_grid IMPLEMENTATION.
           AND NOT line_exists( mt_fieldcatalog[ fieldname = mc_row_style-col_name ] ).
 
         APPEND VALUE #( BASE CORRESPONDING #( ls_fcat_row_style )
-                        tech   = abap_true
-                        no_out = abap_true ) TO mt_fieldcatalog.
-
-      CATCH cx_root.
-    ENDTRY.
-
-  ENDMETHOD.
-
-
-  METHOD enable_cell_style.
-
-    ms_layout-stylefname = mc_cell_style-col_name.
-
-    TRY.
-        DATA(ls_fcat_style) = det_fcat_by_ddic( iv_field_name = mc_cell_style-col_name
-                                                iv_data_type  = mc_cell_style-data_type ).
-        CHECK     ls_fcat_style IS NOT INITIAL
-          AND NOT line_exists( mt_fieldcatalog[ fieldname = mc_cell_style-col_name ] ).
-
-        APPEND VALUE #( BASE CORRESPONDING #( ls_fcat_style )
                         tech   = abap_true
                         no_out = abap_true ) TO mt_fieldcatalog.
 
@@ -471,7 +451,7 @@ CLASS zial_cl_alv_grid IMPLEMENTATION.
 
   METHOD set_evt_ok_code.
 
-    ASSERT mv_appl_events EQ abap_false.
+    CHECK mv_appl_events EQ abap_false.
     mv_ok_code_on_enter = iv_on_enter.
 
   ENDMETHOD.
