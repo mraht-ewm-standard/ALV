@@ -486,26 +486,28 @@ CLASS zial_cl_alv_grid IMPLEMENTATION.
         rs_fcat-fieldname = iv_field_name.
         rs_fcat-col_opt   = abap_true.
 
-        WHILE <ls_text> IS NOT ASSIGNED.
+        IF it_text IS NOT INITIAL.
+          WHILE <ls_text> IS NOT ASSIGNED.
 
-          DATA(lv_index) = sy-index.
-          CASE lv_index.
-            WHEN 1.
-              ASSIGN it_text[ langu = sy-langu ] TO <ls_text>.
+            DATA(lv_index) = sy-index.
+            CASE lv_index.
+              WHEN 1.
+                ASSIGN it_text[ langu = sy-langu ] TO <ls_text>.
 
-            WHEN 2.
-              ASSIGN it_text[ 1 ] TO <ls_text>.
+              WHEN 2.
+                ASSIGN it_text[ 1 ] TO <ls_text>.
 
-            WHEN OTHERS.
-              EXIT.
+              WHEN OTHERS.
+                EXIT.
 
-          ENDCASE.
+            ENDCASE.
 
-          CHECK <ls_text> IS ASSIGNED.
+            CHECK <ls_text> IS ASSIGNED.
 
-          rs_fcat = CORRESPONDING #( BASE ( rs_fcat ) <ls_text> ).
+            rs_fcat = CORRESPONDING #( BASE ( rs_fcat ) <ls_text> ).
 
-        ENDWHILE.
+          ENDWHILE.
+        ENDIF.
 
       CATCH cx_root INTO DATA(lx_error).
         RAISE EXCEPTION TYPE zcx_alv_grid_fcat_not_found
