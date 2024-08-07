@@ -14,17 +14,17 @@ CLASS zial_cl_alv_grid DEFINITION
                END OF mc_sel_mode.
 
     CONSTANTS: BEGIN OF mc_row_style,
-                 col_name  TYPE lvc_cifnm         VALUE 'ROW_STYLE',
-                 data_type TYPE zial_de_data_type VALUE 'CHAR4',
-                 success   TYPE char4             VALUE space,
-                 error     TYPE char4             VALUE 'C600',
+                 col_name  TYPE lvc_cifnm VALUE 'ROW_STYLE',
+                 data_type TYPE typename  VALUE 'CHAR4',
+                 success   TYPE char4     VALUE space,
+                 error     TYPE char4     VALUE 'C600',
                END OF mc_row_style.
 
     CONSTANTS: BEGIN OF mc_cell_style,
-                 col_name  TYPE tabname           VALUE 'CELL_STYLE',
-                 data_type TYPE zial_de_data_type VALUE 'LVC_T_STYL',
-                 success   TYPE x LENGTH 4        VALUE '00000000',
-                 error     TYPE x LENGTH 4        VALUE '00000087',
+                 col_name  TYPE tabname    VALUE 'CELL_STYLE',
+                 data_type TYPE typename   VALUE 'LVC_T_STYL',
+                 success   TYPE x LENGTH 4 VALUE '00000000',
+                 error     TYPE x LENGTH 4 VALUE '00000087',
                END OF mc_cell_style.
 
     CONSTANTS: BEGIN OF mc_okcode,
@@ -42,7 +42,7 @@ CLASS zial_cl_alv_grid DEFINITION
 
     CLASS-METHODS det_fcat_by_ddic
       IMPORTING iv_field_name  TYPE fieldname
-                iv_data_type   TYPE zial_de_data_type
+                iv_data_type   TYPE typename
                 it_text        TYPE zial_tt_alv_fcat_txt OPTIONAL
       RETURNING VALUE(rs_fcat) TYPE lvc_s_fcat
       RAISING   zcx_alv_grid_fcat_not_found.
@@ -513,7 +513,6 @@ CLASS zial_cl_alv_grid IMPLEMENTATION.
         RAISE EXCEPTION TYPE zcx_alv_grid_fcat_not_found
           EXPORTING input_data = VALUE #( ( fnam = 'DATA_TYPE'  low = iv_data_type )
                                           ( fnam = 'FIELD_NAME' low = iv_field_name ) )
-                    message    = zial_cl_log=>to_bapiret( iv_msgtx = CONV #( lx_error->get_text( ) ) )
                     previous   = lx_error.
 
     ENDTRY.
