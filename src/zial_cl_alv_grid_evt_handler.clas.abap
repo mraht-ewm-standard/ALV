@@ -123,7 +123,7 @@ CLASS zial_cl_alv_grid_evt_handler IMPLEMENTATION.
         mo_alv_grid->set_selected_rows( it_row_no = VALUE #( ( es_row_no ) ) ).
 
       CATCH cx_root.
-        " User should redefine HANDLE_USER_COMMAND
+        " Redefine HANDLE_USER_COMMAND
 
     ENDTRY.
 
@@ -134,8 +134,9 @@ CLASS zial_cl_alv_grid_evt_handler IMPLEMENTATION.
 
     TRY.
         handle_user_command( e_ucomm ).
+
       CATCH cx_root.
-        " User should redefine HANDLE_USER_COMMAND
+        " Redefine HANDLE_USER_COMMAND
 
     ENDTRY.
 
