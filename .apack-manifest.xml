@@ -3,20 +3,20 @@
  <asx:values>
   <DATA>
    <GROUP_ID>c-a-s.de</GROUP_ID>
-   <ARTIFACT_ID>ewm-alv</ARTIFACT_ID>
+   <ARTIFACT_ID>alv</ARTIFACT_ID>
    <VERSION>15.02.2024.001-rc</VERSION>
    <REPOSITORY_TYPE>abapGit</REPOSITORY_TYPE>
    <GIT_URL>https://github.com/mraht-ewm-standard/ALV.git</GIT_URL>
    <DEPENDENCIES>
     <item>
      <GROUP_ID>c-a-s.de</GROUP_ID>
-     <ARTIFACT_ID>ewm-dev-basis</ARTIFACT_ID>
+     <ARTIFACT_ID>dev-basis</ARTIFACT_ID>
      <GIT_URL>https://github.com/mraht-ewm-standard/DEV_BASIS.git</GIT_URL>
      <TARGET_PACKAGE>ZIAL_DEV_BASIS</TARGET_PACKAGE>
     </item>
     <item>
      <GROUP_ID>c-a-s.de</GROUP_ID>
-     <ARTIFACT_ID>ewm-exc-mgmt</ARTIFACT_ID>
+     <ARTIFACT_ID>exc-mgmt</ARTIFACT_ID>
      <GIT_URL>https://github.com/mraht-ewm-standard/EXC_MGMT.git</GIT_URL>
      <TARGET_PACKAGE>ZIAL_EXC_MGMT</TARGET_PACKAGE>
     </item>
